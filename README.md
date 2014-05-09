@@ -1,4 +1,6 @@
-tickworks
+Tick Works
 =========
 
-Event processing engine
+Event processing engine.
+
+This project is no longer being developed.
