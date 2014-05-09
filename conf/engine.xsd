@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<!-- Tickworks engine schema -->
+
+<xs:complexType name="outputConnectorConsumerType">
+<xs:all>
+<xs:element name="type" type="typeType"/>
+</xs:all>
+<xs:attribute name="id" type="xs:string" use="required"/>
+</xs:complexType>
+
+<xs:complexType name="outputConnectorType">
+<xs:all>
+<xs:element name="consumer" type="outputConnectorConsumerType"/>
+<xs:element name="inputPoints" type="inputPointsType"/>
+</xs:all>
+<xs:attribute name="id" type="xs:string" use="required"/>
+</xs:complexType>
+
+<xs:complexType name="inputConnectorProviderType">
+<xs:all>
+<xs:element name="type" type="typeType"/>
+</xs:all>
+<xs:attribute name="id" type="xs:string" use="required"/>
+</xs:complexType>
+
+<xs:complexType name="inputConnectorType">
+<xs:all>
+<xs:element name="provider" type="inputConnectorProviderType"/>
+<xs:element name="outputPoints" type="outputPointsType"/>
+</xs:all>
+<xs:attribute name="id" type="xs:string" use="required"/>
+</xs:complexType>
+
+<xs:complexType name="outputConnectorsType">
+<xs:sequence>
+<xs:element name="outputConnector" type="outputConnectorType" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="inputConnectorsType">
+<xs:sequence>
+<xs:element name="inputConnector" type="inputConnectorType" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="outputPointType">
+<xs:attribute name="id" type="xs:string" use="required"/>
+</xs:complexType>
+
+<xs:complexType name="outputPointsType">
+<xs:sequence>
+<xs:element name="outputPoint" type="outputPointType" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="inputPointType">
+<xs:all>
+<xs:element name="queryFunction" type="functionType" minOccurs="0"/>
+</xs:all>
+<xs:attribute name="id" type="xs:string" use="required"/>
+</xs:complexType>
+
+<xs:complexType name="inputPointsType">
+<xs:sequence>
+<xs:element name="inputPoint" type="inputPointType" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="functionType">
+<xs:all>
+<xs:element name="type" type="typeType"/>
+</xs:all>
+<xs:attribute name="id" type="xs:string" use="required"/>
+</xs:complexType>
+
+<xs:complexType name="cacheType">
+<xs:all>
+<xs:element name="type" type="typeType"/>
+<xs:element name="inputPoints" type="inputPointsType"/>
+<xs:element name="outputPoints" type="outputPointsType"/>
+</xs:all>
+<xs:attribute name="id" type="xs:string" use="required"/>
+</xs:complexType>
+
+<xs:complexType name="cachesType">
+<xs:sequence>
+<xs:element name="cache" type="cacheType" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ruleType">
+<xs:all>
+<xs:element name="inputPoints" type="inputPointsType"/>
+<xs:element name="outputPoints" type="outputPointsType"/>
+<xs:element name="function" type="functionType"/>
+</xs:all>
+<xs:attribute name="id" type="xs:string" use="required"/>
+</xs:complexType>
+
+<xs:complexType name="rulesType">
+<xs:sequence>
+<xs:element name="rule" type="ruleType" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="processorType">
+<xs:all>
+<xs:element name="caches" type="cachesType" minOccurs="0"/>
+<xs:element name="rules" type="rulesType"/>
+</xs:all>
+<xs:attribute name="id" type="xs:string" use="required"/>
+</xs:complexType>
+
+<xs:complexType name="typeParametersType">
+<xs:sequence>
+<xs:element name="typeParameter" type="typeType" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="typeType">
+<xs:all>
+<xs:element name="className" type="xs:string"/>
+<xs:element name="typeParameters" type="typeParametersType" minOccurs="0"/>
+</xs:all>
+</xs:complexType>
+
+<xs:complexType name="connectionPointType">
+<xs:all>
+<xs:element name="type" type="typeType"/>
+</xs:all>
+<xs:attribute name="id" type="xs:string" use="required"/>
+</xs:complexType>
+
+<xs:complexType name="connectionPointsType">
+<xs:sequence>
+<xs:element name="connectionPoint" type="connectionPointType" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="engineType">
+<xs:all>
+<xs:element name="connectionPoints" type="connectionPointsType"/>
+<xs:element name="processor" type="processorType"/>
+<xs:element name="inputConnectors" type="inputConnectorsType"/>
+<xs:element name="outputConnectors" type="outputConnectorsType"/>
+</xs:all>
+<xs:attribute name="id" type="xs:string" use="required"/>
+</xs:complexType>
+
+<xs:element name="engine" type="engineType"/>
+
+</xs:schema>

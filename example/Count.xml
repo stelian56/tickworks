@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<engine id="MyEngine">
+ <connectionPoints>
+  <connectionPoint id="ConnectionPoint1">
+   <type>
+    <className>java.lang.Integer</className>
+   </type>
+  </connectionPoint>
+  <connectionPoint id="ConnectionPoint2">
+   <type>
+    <className>java.lang.Integer</className>
+   </type>
+  </connectionPoint>
+  <connectionPoint id="ConnectionPoint3">
+   <type>
+    <className>java.lang.Integer</className>
+   </type>
+  </connectionPoint>
+  <connectionPoint id="ConnectionPoint4">
+   <type>
+    <className>java.lang.Integer</className>
+   </type>
+  </connectionPoint>
+  <connectionPoint id="ConnectionPoint5">
+   <type>
+    <className>java.lang.Integer</className>
+   </type>
+  </connectionPoint>
+ </connectionPoints>
+ <processor id="MyProcessor">
+  <caches>
+   <cache id="PointCache">
+    <type>
+     <className>net.geocentral.tickworks.cache.PointCache</className>
+     <typeParameters>
+      <typeParameter>
+       <className>java.lang.Integer</className>
+      </typeParameter>
+     </typeParameters>
+    </type>
+    <inputPoints>
+     <inputPoint id="ConnectionPoint2"/>
+    </inputPoints>
+    <outputPoints>
+     <outputPoint id="ConnectionPoint4"/>
+    </outputPoints>
+   </cache>
+  </caches>
+  <rules>
+   <rule id="StoreRule">
+    <inputPoints>
+     <inputPoint id="ConnectionPoint1"/>
+    </inputPoints>
+    <outputPoints>
+     <outputPoint id="ConnectionPoint2"/>
+     <outputPoint id="ConnectionPoint3"/>
+    </outputPoints>
+    <function id="IdemFunction">
+     <type>
+      <className>net.geocentral.tickworks.function.IdemFunction</className>
+      <typeParameters>
+       <typeParameter>
+        <className>java.lang.Integer</className>
+       </typeParameter>
+      </typeParameters>
+     </type>
+    </function>
+   </rule>
+   <rule id="CountRule">
+    <inputPoints>
+     <inputPoint id="ConnectionPoint3"/>
+     <inputPoint id="ConnectionPoint4">
+      <queryFunction id="IdemQueryFunction">
+       <type>
+        <className>net.geocentral.tickworks.function.IdemFunction</className>
+        <typeParameters>
+         <typeParameter>
+          <className>java.lang.Integer</className>
+         </typeParameter>
+        </typeParameters>
+       </type>
+      </queryFunction>
+     </inputPoint>
+    </inputPoints>
+    <outputPoints>
+     <outputPoint id="ConnectionPoint5"/>
+    </outputPoints>
+    <function id="CountFunction">
+     <type>
+      <className>net.geocentral.tickworks.function.CountFunction</className>
+      <typeParameters>
+       <typeParameter>
+        <className>java.lang.Integer</className>
+       </typeParameter>
+      </typeParameters>
+     </type>
+    </function>
+   </rule>
+  </rules>
+ </processor>
+ <inputConnectors>
+  <inputConnector id="ConsoleInputConnector">
+   <provider id="ConsoleConnectorProvider">
+    <type>
+     <className>net.geocentral.tickworks.inputConnectorProvider.ConsoleConnectorProvider</className>
+    </type>
+   </provider>
+   <outputPoints>
+    <outputPoint id="ConnectionPoint1"/>
+   </outputPoints>
+  </inputConnector>
+ </inputConnectors>
+ <outputConnectors>
+  <outputConnector id="ConsoleOutputConnector">
+   <consumer id="ConsoleConnectorConsumer">
+    <type>
+     <className>net.geocentral.tickworks.outputConnectorConsumer.ConsoleConnectorConsumer</className>
+    </type>
+   </consumer>
+   <inputPoints>
+    <inputPoint id="ConnectionPoint5"/>
+   </inputPoints>
+  </outputConnector>
+ </outputConnectors>
+</engine>
+

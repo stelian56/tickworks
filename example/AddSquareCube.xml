@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<engine id="MyEngine">
+ <connectionPoints>
+  <connectionPoint id="ConnectionPoint1">
+   <type>
+    <className>java.lang.Integer</className>
+   </type>
+  </connectionPoint>
+  <connectionPoint id="ConnectionPoint2">
+   <type>
+    <className>java.lang.Integer</className>
+   </type>
+  </connectionPoint>
+  <connectionPoint id="ConnectionPoint3">
+   <type>
+    <className>java.lang.Integer</className>
+   </type>
+  </connectionPoint>
+  <connectionPoint id="ConnectionPoint4">
+   <type>
+    <className>java.lang.Integer</className>
+   </type>
+  </connectionPoint>
+  <connectionPoint id="ConnectionPoint5">
+   <type>
+    <className>java.lang.Integer</className>
+   </type>
+  </connectionPoint>
+
+ </connectionPoints>
+ <processor id="MyProcessor">
+  <rules>
+   <rule id="SquareRule">
+    <inputPoints>
+     <inputPoint id="ConnectionPoint1"/>
+    </inputPoints>
+    <outputPoints>
+     <outputPoint id="ConnectionPoint2"/>
+    </outputPoints>
+    <function id="SquareFunction">
+     <type>
+      <className>net.geocentral.tickworks.function.SquareFunction</className>
+     </type>
+    </function>
+   </rule>
+   <rule id="CubeRule">
+    <inputPoints>
+     <inputPoint id="ConnectionPoint3"/>
+    </inputPoints>
+    <outputPoints>
+     <outputPoint id="ConnectionPoint4"/>
+    </outputPoints>
+    <function id="CubeFunction">
+     <type>
+      <className>net.geocentral.tickworks.function.CubeFunction</className>
+     </type>
+    </function>
+   </rule>
+   <rule id="AddRule">
+    <inputPoints>
+     <inputPoint id="ConnectionPoint2"/>
+     <inputPoint id="ConnectionPoint4"/>
+    </inputPoints>
+    <outputPoints>
+     <outputPoint id="ConnectionPoint5"/>
+    </outputPoints>
+    <function id="AddFunction">
+     <type>
+      <className>net.geocentral.tickworks.function.AddFunction</className>
+     </type>
+    </function>
+   </rule>
+  </rules>
+ </processor>
+ <inputConnectors>
+  <inputConnector id="ConsoleInputConnector">
+   <provider id="ConsoleConnectorProvider">
+    <type>
+     <className>net.geocentral.tickworks.inputConnectorProvider.ConsoleConnectorProvider</className>
+    </type>
+   </provider>
+   <outputPoints>
+    <outputPoint id="ConnectionPoint1"/>
+    <outputPoint id="ConnectionPoint3"/>
+   </outputPoints>
+  </inputConnector>
+ </inputConnectors>
+ <outputConnectors>
+  <outputConnector id="ConsoleOutputConnector">
+   <consumer id="ConsoleConnectorConsumer">
+    <type>
+     <className>net.geocentral.tickworks.outputConnectorConsumer.ConsoleConnectorConsumer</className>
+    </type>
+   </consumer>
+   <inputPoints>
+    <inputPoint id="ConnectionPoint5"/>
+   </inputPoints>
+  </outputConnector>
+ </outputConnectors>
+</engine>
+
